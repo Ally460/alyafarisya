@@ -1,0 +1,158 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - ALYA FARISYA</title>
+    <meta name="author" content="ALYA FARISYA BINTI AKMAL NASRI">
+    
+    <link rel="stylesheet" href="styleindex.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>ALYA FARISYA BINTI AKMAL NASRI</h1>
+        <p><marquee> IMD 318 - Develop Your Own Personal Website </marquee></p> 
+        
+        <div id="datetime-container">
+            <span id="current-datetime">Loading...</span>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">&#127969; Home</a></li>
+                <li><a href="biodata.html">&#128100; Biodata</a></li>
+                <li><a href="myfamily.html">&#128106; My Family</a></li>
+                <li><a href="experience.html">&#128188; Experience</a></li>
+                <li><a href="education.html">&#127891; Education</a></li>
+                <li><a href="gallery.html">&#128247; Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section class="content-section centered-content">
+            <h2>&#10024; WELCOME TO MY PERSONAL WEBSITE! &#10024;</h2> 
+            <img src="ally.jpg" class="profile-image">
+            
+            <p>This is my personal resume website, developed using pure HTML and CSS, as an individual project for the IMD 318 course. Explore the menu above to learn more about my interests.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>&#128150; Fun Facts About Me! &#129321;</h2> 
+            <ul>
+                <li>I love dancing! &#128131;</li>
+                <li>I love singing as well! &#127908;</li>
+                <li>I love pink! &#127878;</li>
+                <li>I have written and published a novel! &#9997;&#128218;</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>&#128250; Currently Watching: Dear X (디어 엑스)!</h2>
+            
+            <div class="drama-media-container">
+                
+                <div class="poster-frame">
+                    <p class="poster-caption">Official Dear X Poster</p> 
+                    <img src="x.jpeg" alt="Poster Drama Dear X" class="drama-poster"> 
+                </div>
+                
+                <div class="video-frame">
+                    <p class="video-caption">Official Trailer</p>
+                    <div class="video-container">
+                        <iframe 
+                            width="560" 
+                            height="315" 
+                            src="dear.mp4" 
+                            title="Dear X Drama Trailer" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <dl>
+                <dt><strong>Drama Title:</strong></dt>
+                <dd>Dear X (디어 엑스)</dd>
+
+                <dt><strong>Genre:</strong></dt>
+                <dd>Thriller, Mystery, Psychological</dd>
+
+                <dt><strong>Personal Rating (1-5):</strong></dt>
+                <dd>⭐⭐⭐⭐⭐ (5/5 Stars)</dd>
+
+                <dt><strong>Viewing Status:</strong></dt>
+                <dd>Currently watching (Episode 10 of 12)</dd>
+                
+                <dt><strong>Brief Comment:</strong></dt>
+                <dd>Kim Youjung’s chilling performance elevates this complex psychological thriller. A masterpiece of cinematography and tension!</dd>
+            </dl>
+            
+            <p class="audio-note" style="margin-top: 20px;">
+            </p>
+        </section>
+        <section class="content-section audio-section">
+            <h2>🎧 My Current Playlist</h2>
+            
+            <audio id="myAudioPlayer" controls loop></audio>
+            
+            <div id="playlist-container">
+                <button class="song-btn" data-src="yellow.mp3" data-title="Song 1: Yellow by Treasure">Play Song 1</button>
+                <button class="song-btn" data-src="we go up.mp3" data-title="Song 2: We Go Up by Babymonster">Play Song 2</button>
+                <button class="song-btn" data-src="december.mp3" data-title="Song 3: Back to December by Taylor Swift">Play Song 3</button>
+                <button class="song-btn" data-src="psycho.mp3" data-title="Song 4: Psycho by Babymonster">Play Song 4</button>
+            </div>
+
+            <p id="now-playing-title">Status: Please select a song...</p>
+        </section>
+        
+    </main>
+
+    <footer>
+        <p>Copyright &copy; 2025 Alya Farisya.</p>
+        <p>Project IMD 318. </p>
+    </footer>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', 
+                hour: '2-digit', minute: '2-digit', second: '2-digit', 
+                hour12: true, timeZoneName: 'short' 
+            };
+            const formattedDateTime = now.toLocaleDateString('en-MY', options);
+            document.getElementById('current-datetime').textContent = formattedDateTime;
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const audioPlayer = document.getElementById('myAudioPlayer');
+            const songButtons = document.querySelectorAll('.song-btn');
+            const nowPlayingTitle = document.getElementById('now-playing-title');
+
+            songButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const songSrc = this.getAttribute('data-src');
+                    const songTitle = this.getAttribute('data-title');
+                    
+                    audioPlayer.src = songSrc;
+                    audioPlayer.load();
+                    audioPlayer.play();
+                    
+                    nowPlayingTitle.textContent = `Now Playing: ${songTitle}`;
+                    
+                    songButtons.forEach(btn => btn.classList.remove('active-song'));
+                    this.classList.add('active-song');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
